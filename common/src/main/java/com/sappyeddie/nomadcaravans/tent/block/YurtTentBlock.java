@@ -2,8 +2,13 @@ package com.sappyeddie.nomadcaravans.tent.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -24,6 +29,14 @@ public class YurtTentBlock extends TentBlock {
     @Override
     public net.minecraft.resources.Identifier getRolledUpModelId() {
         return com.sappyeddie.nomadcaravans.NomadCaravans.id("item/rolledupyurttent");
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
+        if (ctx instanceof EntityCollisionContext entityCtx && entityCtx.getEntity() == null) {
+            return Shapes.empty();
+        }
+        return super.getCollisionShape(state, level, pos, ctx);
     }
 
     @Override

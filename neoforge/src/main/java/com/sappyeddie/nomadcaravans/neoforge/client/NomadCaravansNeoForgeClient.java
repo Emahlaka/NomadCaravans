@@ -4,6 +4,8 @@ import com.sappyeddie.nomadcaravans.ModRegistries;
 import com.sappyeddie.nomadcaravans.NomadCaravans;
 import com.sappyeddie.nomadcaravans.client.render.BabyYakRenderer;
 import com.sappyeddie.nomadcaravans.client.render.CaravanGuardRenderer;
+import com.sappyeddie.nomadcaravans.client.render.NomadGuardModel;
+import com.sappyeddie.nomadcaravans.client.render.NomadModelLayers;
 import com.sappyeddie.nomadcaravans.client.render.UntameableWanderingTraderYakRenderer;
 import com.sappyeddie.nomadcaravans.client.render.UntameableWildYakRenderer;
 import com.sappyeddie.nomadcaravans.client.render.UntameableYakRenderer;
@@ -21,7 +23,15 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 @Mod(value = NomadCaravans.MOD_ID, dist = Dist.CLIENT)
 public final class NomadCaravansNeoForgeClient {
     public NomadCaravansNeoForgeClient(IEventBus modBus) {
+        modBus.addListener(this::onRegisterLayerDefinitions);
         modBus.addListener(this::onRegisterRenderers);
+
+        dev.architectury.event.events.client.ClientTickEvent.CLIENT_POST.register(
+                com.sappyeddie.nomadcaravans.client.NomadDynamicLights::tick);
+    }
+
+    private void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(NomadModelLayers.NOMAD_GUARD, NomadGuardModel::createBodyLayer);
     }
 
     private void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {

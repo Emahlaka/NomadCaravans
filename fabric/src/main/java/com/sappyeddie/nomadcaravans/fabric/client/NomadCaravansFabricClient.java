@@ -16,6 +16,9 @@ public final class NomadCaravansFabricClient implements ClientModInitializer {
 
         ModelLayerRegistry.registerModelLayer(NomadModelLayers.NOMAD_GUARD, NomadGuardModel::createBodyLayer);
 
+        dev.architectury.event.events.client.ClientTickEvent.CLIENT_POST.register(
+                com.sappyeddie.nomadcaravans.client.NomadDynamicLights::tick);
+
 
         EntityRendererRegistry.register(ModRegistries.YAK.get(), YakRenderer::new);
         EntityRendererRegistry.register(ModRegistries.WILD_YAK.get(), WildYakRenderer::new);

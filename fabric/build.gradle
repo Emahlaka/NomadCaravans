@@ -51,5 +51,6 @@ jar {
     from({ configurations.shadowBundle.collect { it.isDirectory() ? it : zipTree(it) } }) {
         exclude "META-INF/MANIFEST.MF"
         exclude "architectury.common.json"
+        exclude "dev/lambdaurora/**"
     }
 }
