@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "nomadcaravans:item/tipi_tent",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}

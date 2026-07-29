@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GIG",
+    "#L#",
+    "G G"
+  ],
+  "key": {
+    "G": "nomadcaravans:white_yak_wool",
+    "#": "nomadcaravans:yak_hide",
+    "L": "minecraft:leather_leggings",
+    "I": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nomadcaravans:nomad_leggings"
+  }
+}

@@ -1,0 +1,51 @@
+architectury {
+    platformSetupLoomIde()
+    neoForge()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+
+    // Holds the Architectury-transformed :common output that gets merged into the production jar.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
+
+    implementation "dev.architectury:architectury-neoforge:${rootProject.architectury_api_version}"
+
+    // GeckoLib (NeoForge)
+    implementation "com.geckolib:geckolib-neoforge-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
+
+    // Compile/dev against :common (untransformed); no `namedElements` variant exists in no-remap Loom.
+    common(project(":common")) { transitive false }
+    // Production bundling: the transformed :common classes/resources.
+    shadowBundle project(path: ":common", configuration: "transformProductionNeoForge")
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand "version": project.version
+    }
+}
+
+jar {
+    // No-remap: `jar` is the production artifact. Merge the Architectury-transformed :common output.
+    dependsOn configurations.shadowBundle
+    from({ configurations.shadowBundle.collect { it.isDirectory() ? it : zipTree(it) } }) {
+        exclude "META-INF/MANIFEST.MF"
+        exclude "architectury.common.json"
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "nomadcaravans:brown_yak_wool"
+  ],
+  "result": {
+    "id": "minecraft:brown_wool",
+    "count": 4
+  }
+}

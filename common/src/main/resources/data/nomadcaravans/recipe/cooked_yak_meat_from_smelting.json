@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient":  "nomadcaravans:raw_yak_meat",
+  "result": {
+    "id": "nomadcaravans:cooked_yak_meat",
+    "count": 1
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "nomadcaravans:nomad_helmet",
+    "nomadcaravans:nomad_chestplate",
+    "nomadcaravans:nomad_leggings",
+    "nomadcaravans:nomad_boots",
+    "nomadcaravans:nomad_bow",
+    "nomadcaravans:nomad_sword",
+    "nomadcaravans:nomad_shield"
+  ]
+}

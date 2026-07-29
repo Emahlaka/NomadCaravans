@@ -1,0 +1,9 @@
+{
+  "trades": "#nomadcaravans:nomad_merchant/level_1",
+  "amount": {
+    "type": "minecraft:uniform",
+    "min": 4,
+    "max": 6
+  },
+  "allow_duplicates": false
+}

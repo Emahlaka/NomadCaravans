@@ -1,0 +1,16 @@
+architectury {
+    common(rootProject.enabled_platforms.split(","))
+}
+
+dependencies {
+    // Fabric loader provides the @Environment annotations and mixin plumbing used by common code.
+    // Do not use it directly for game logic — use the Architectury API instead.
+    implementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+
+    // Architectury common API: write shared code once here, it runs on every loader.
+    implementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
+
+    // GeckoLib (common). 100% of GeckoLib lives in common; the actual runtime implementation is
+    // supplied by the loader-specific geckolib-fabric / geckolib-neoforge artifacts.
+    compileOnly "com.geckolib:geckolib-common-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
+}

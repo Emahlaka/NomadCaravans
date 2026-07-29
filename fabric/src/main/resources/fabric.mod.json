@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "nomadcaravans",
+	"version": "${version}",
+	"name": "Nomad Caravans",
+	"description": "Traveling nomad caravans that pitch camp at night, herd animals (including caravan-exclusive yaks), and trade — plus bandit camps to raid.",
+	"authors": [
+		"SappyEddie"
+	],
+	"license": "All Rights Reserved",
+	"icon": "assets/nomadcaravans/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.sappyeddie.nomadcaravans.fabric.NomadCaravansFabric"
+		],
+		"client": [
+			"com.sappyeddie.nomadcaravans.fabric.client.NomadCaravansFabricClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*",
+		"architectury": ">=20.0.0",
+		"geckolib": "*"
+	}
+}

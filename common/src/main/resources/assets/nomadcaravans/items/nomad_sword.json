@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "nomadcaravans:nomad_sword",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}

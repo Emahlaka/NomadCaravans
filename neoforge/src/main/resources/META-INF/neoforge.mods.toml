@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="nomadcaravans"
+version="${version}"
+displayName="Nomad Caravans"
+authors="SappyEddie"
+description='''
+Traveling nomad caravans that pitch camp at night, herd animals (including caravan-exclusive yaks), and trade — plus bandit camps to raid.
+'''
+logoFile="assets/nomadcaravans/icon.png"
+
+[[dependencies.nomadcaravans]]
+modId="neoforge"
+type="required"
+versionRange="[26.1.2,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.nomadcaravans]]
+modId="minecraft"
+type="required"
+versionRange="[26.1.2]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.nomadcaravans]]
+modId="architectury"
+type="required"
+versionRange="[20.0.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.nomadcaravans]]
+modId="geckolib"
+type="required"
+versionRange="[5.5.0,)"
+ordering="NONE"
+side="BOTH"

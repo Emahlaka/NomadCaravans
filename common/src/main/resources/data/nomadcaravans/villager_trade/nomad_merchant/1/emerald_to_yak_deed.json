@@ -1,0 +1,7 @@
+{
+  "wants": { "id": "minecraft:emerald", "count": 25 },
+  "gives": { "id": "nomadcaravans:yak_deed", "count": 1 },
+  "max_uses": 2,
+  "reputation_discount": 0.05,
+  "xp": 5
+}

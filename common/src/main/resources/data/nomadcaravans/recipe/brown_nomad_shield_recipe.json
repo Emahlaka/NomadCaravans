@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G#G",
+    "#=#",
+    "G#G"
+  ],
+  "key": {
+    "G": "nomadcaravans:brown_yak_wool",
+    "#": "#minecraft:planks",
+    "=": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "nomadcaravans:nomad_shield"
+  }
+}

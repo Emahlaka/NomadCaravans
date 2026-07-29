@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R#~",
+    "# ~",
+    "R#~"
+  ],
+  "key": {
+    "R": "nomadcaravans:yak_hide",
+    "#": "minecraft:stick",
+    "~": "minecraft:string"
+  },
+  "result": {
+    "id": "nomadcaravans:nomad_bow",
+    "count": 1
+  }
+}

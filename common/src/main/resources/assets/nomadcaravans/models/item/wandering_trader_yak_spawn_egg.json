@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "nomadcaravans:item/wandering_trader_yak_spawn_egg"
+  }
+}

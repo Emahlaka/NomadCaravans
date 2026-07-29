@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "SSS",
+    "###"
+  ],
+  "key": {
+    "#": "nomadcaravans:salt",
+    "S": "nomadcravans:raw_yak_meet"
+
+  },
+  "result": {
+    "id": "nomadcaravans:dried_yak_meet",
+    "count": 1
+  }
+}

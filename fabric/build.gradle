@@ -1,0 +1,55 @@
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    // Holds the Architectury-transformed :common output that gets merged into the production jar.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    implementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+
+    implementation "dev.architectury:architectury-fabric:${rootProject.architectury_api_version}"
+
+    // GeckoLib (Fabric)
+    implementation "com.geckolib:geckolib-fabric-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
+
+    // Compile/dev against :common (untransformed); no `namedElements` variant exists in no-remap Loom.
+    common(project(":common")) { transitive false }
+    // Production bundling: the transformed :common classes/resources.
+    shadowBundle project(path: ":common", configuration: "transformProductionFabric")
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+jar {
+    // Minecraft 26.1+ is unobfuscated, so Loom runs in no-remap mode and there is no `remapJar`
+    // task — the `jar` task is the production artifact. Merge the Architectury-transformed :common
+    // classes/resources straight into it. The dependsOn wires the :common:transformProductionFabric
+    // task so the transformed output actually exists when this jar is assembled.
+    dependsOn configurations.shadowBundle
+    from({ configurations.shadowBundle.collect { it.isDirectory() ? it : zipTree(it) } }) {
+        exclude "META-INF/MANIFEST.MF"
+        exclude "architectury.common.json"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GIG",
+    "#L#",
+    "G#G"
+  ],
+  "key": {
+    "G": "nomadcaravans:gray_yak_wool",
+    "#": "nomadcaravans:yak_hide",
+    "L": "minecraft:leather_chestplate",
+    "I": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nomadcaravans:nomad_chestplate"
+  }
+}

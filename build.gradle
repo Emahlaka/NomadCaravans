@@ -1,0 +1,58 @@
+plugins {
+    // Minecraft 26.1+ is shipped unobfuscated, so we use the "no-remap" variant of Architectury Loom.
+    id "dev.architectury.loom-no-remap" version "1.17.491" apply false
+    id "architectury-plugin" version "3.5.169"
+}
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+allprojects {
+    group = rootProject.maven_group
+    version = rootProject.mod_version
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom-no-remap"
+    apply plugin: "architectury-plugin"
+
+    base {
+        // e.g. nomadcaravans-fabric, nomadcaravans-neoforge, nomadcaravans-common
+        archivesName = "${rootProject.archives_base_name}-${project.name}"
+    }
+
+    repositories {
+        maven {
+            name = "Architectury"
+            url = "https://maven.architectury.dev/"
+        }
+        maven {
+            name = "NeoForged"
+            url = "https://maven.neoforged.net/releases"
+        }
+        maven {
+            name = "GeckoLib"
+            url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+            content { includeGroupAndSubgroups("com.geckolib") }
+        }
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        // No `mappings` line: Minecraft 26.1+ is unobfuscated and Loom runs in no-remap mode.
+    }
+
+    java {
+        withSourcesJar()
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
+        // Mojang ships Java 25 to end users in 26.1.2, so mods target Java 25.
+        toolchain.languageVersion = JavaLanguageVersion.of(25)
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
+        options.release = 25
+    }
+}
