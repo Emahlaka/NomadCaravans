@@ -2,10 +2,7 @@ package com.sappyeddie.nomadcaravans.fabric;
 
 import com.sappyeddie.nomadcaravans.ModRegistries;
 import com.sappyeddie.nomadcaravans.NomadCaravans;
-import com.sappyeddie.nomadcaravans.entity.BabyYakEntity;
-import com.sappyeddie.nomadcaravans.entity.CaravanGuardEntity;
-import com.sappyeddie.nomadcaravans.entity.WildYakEntity;
-import com.sappyeddie.nomadcaravans.entity.YakEntity;
+import com.sappyeddie.nomadcaravans.entity.*;
 import com.sappyeddie.nomadcaravans.platform.NomadPlatform;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -27,6 +24,8 @@ public final class NomadCaravansFabric implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ModRegistries.CARAVAN_LEADER.get(), Villager.createAttributes());
         FabricDefaultAttributeRegistry.register(ModRegistries.CARAVAN_FOLLOWER.get(), Villager.createAttributes());
         FabricDefaultAttributeRegistry.register(ModRegistries.CARAVAN_GUARD.get(), CaravanGuardEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(ModRegistries.BANDIT.get(), BanditEntity.createAttributes());
+
         FabricDefaultAttributeRegistry.register(ModRegistries.UNTAMEABLE_YAK.get(),
                 com.sappyeddie.nomadcaravans.entity.UntameableYakEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(ModRegistries.UNTAMEABLE_WILD_YAK.get(),

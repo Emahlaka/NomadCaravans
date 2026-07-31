@@ -18,7 +18,10 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.Set;
 import java.util.UUID;
+import java.util.WeakHashMap;
 
 public class TentBlockEntity extends BlockEntity implements GeoBlockEntity {
 
@@ -30,6 +33,8 @@ public class TentBlockEntity extends BlockEntity implements GeoBlockEntity {
     private Component customName = null;
 
     private boolean campLocked = false;
+
+    private boolean bandit = false;
 
     int doorCheckTimer = 0;
 
@@ -78,6 +83,15 @@ public class TentBlockEntity extends BlockEntity implements GeoBlockEntity {
         setChanged();
     }
 
+    public boolean isBandit() {
+        return this.bandit;
+    }
+
+    public void setBandit(boolean bandit) {
+        this.bandit = bandit;
+        markAndSync();
+    }
+
     private void markAndSync() {
         setChanged();
         if (this.level != null && !this.level.isClientSide()) {
@@ -97,6 +111,9 @@ public class TentBlockEntity extends BlockEntity implements GeoBlockEntity {
         if (this.campLocked) {
             output.putBoolean("CampLocked", true);
         }
+        if (this.bandit) {
+            output.putBoolean("Bandit", true);
+        }
     }
 
     @Override
@@ -111,6 +128,7 @@ public class TentBlockEntity extends BlockEntity implements GeoBlockEntity {
         });
         input.read("CustomName", ComponentSerialization.CODEC).ifPresent(c -> this.customName = c);
         this.campLocked = input.getBooleanOr("CampLocked", false);
+        this.bandit = input.getBooleanOr("Bandit", false);
     }
 
     @Override
@@ -119,11 +137,37 @@ public class TentBlockEntity extends BlockEntity implements GeoBlockEntity {
         if (this.ownerUUID != null) {
             tag.putString("OwnerUUID", this.ownerUUID.toString());
         }
+        if (this.bandit) {
+            tag.putBoolean("Bandit", true);
+        }
         return tag;
     }
 
     @Override
-    public @Nullable ClientboundBlockEntityDataPacket getUpdatePacket() {
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
+
+    /* === OFFSCREEN RENDERING TRACKER === */
+    private static final Set<TentBlockEntity> ALL_RENDERABLE_TENTS = Collections.newSetFromMap(new WeakHashMap<>());
+
+    // onLoad() removed from BlockEntity in MC 26.x; called manually from MyGeoBlock if needed
+    public void onLoad() {
+        if (this.level != null && this.level.isClientSide()) {
+            ALL_RENDERABLE_TENTS.add(this);
+        }
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        if (this.level != null && this.level.isClientSide()) {
+            ALL_RENDERABLE_TENTS.remove(this);
+        }
+    }
+
+    public static Set<TentBlockEntity> getAllTents() {
+        return ALL_RENDERABLE_TENTS;
+    }
 }
+

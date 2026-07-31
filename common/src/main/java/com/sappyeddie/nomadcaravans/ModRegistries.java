@@ -63,6 +63,35 @@ public final class ModRegistries {
                             .enchantable(NomadArmorMaterials.YAK_HIDE_ENCHANTMENT_VALUE)
                             .setId(itemKey("nomad_boots"))));
 
+    public static final RegistrySupplier<Item> BANDIT_HELMET = ITEMS.register("bandit_helmet",
+            () -> new BanditArmorItem(NomadArmorMaterials.YAK_HIDE, ArmorType.HELMET,
+                    new Item.Properties()
+                            .durability(ArmorType.HELMET.getDurability(NomadArmorMaterials.YAK_HIDE_BASE_DURABILITY))
+                            .enchantable(NomadArmorMaterials.YAK_HIDE_ENCHANTMENT_VALUE)
+                            .setId(itemKey("bandit_helmet"))));
+
+    public static final RegistrySupplier<Item> BANDIT_CHESTPLATE = ITEMS.register("bandit_chestplate",
+            () -> new BanditArmorItem(NomadArmorMaterials.YAK_HIDE, ArmorType.CHESTPLATE,
+                    new Item.Properties()
+                            .durability(ArmorType.CHESTPLATE.getDurability(NomadArmorMaterials.YAK_HIDE_BASE_DURABILITY))
+                            .enchantable(NomadArmorMaterials.YAK_HIDE_ENCHANTMENT_VALUE)
+                            .setId(itemKey("bandit_chestplate"))));
+
+    public static final RegistrySupplier<Item> BANDIT_LEGGINGS = ITEMS.register("bandit_leggings",
+            () -> new BanditArmorItem(NomadArmorMaterials.YAK_HIDE, ArmorType.LEGGINGS,
+                    new Item.Properties()
+                            .durability(ArmorType.LEGGINGS.getDurability(NomadArmorMaterials.YAK_HIDE_BASE_DURABILITY))
+                            .enchantable(NomadArmorMaterials.YAK_HIDE_ENCHANTMENT_VALUE)
+                            .setId(itemKey("bandit_leggings"))));
+
+    public static final RegistrySupplier<Item> BANDIT_BOOTS = ITEMS.register("bandit_boots",
+            () -> new BanditArmorItem(NomadArmorMaterials.YAK_HIDE, ArmorType.BOOTS,
+                    new Item.Properties()
+                            .durability(ArmorType.BOOTS.getDurability(NomadArmorMaterials.YAK_HIDE_BASE_DURABILITY))
+                            .enchantable(NomadArmorMaterials.YAK_HIDE_ENCHANTMENT_VALUE)
+                            .setId(itemKey("bandit_boots"))));
+
+
     public static final RegistrySupplier<Item> NOMAD_BOW = ITEMS.register("nomad_bow",
             () -> new NomadBowItem(new Item.Properties()
                     .durability(384)
@@ -209,6 +238,14 @@ public final class ModRegistries {
                     .clientTrackingRange(10)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, NomadCaravans.id("caravan_guard"))));
 
+    public static final RegistrySupplier<EntityType<BanditEntity>> BANDIT = ENTITY_TYPES.register(
+            "bandit",
+            () -> EntityType.Builder.of(BanditEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, NomadCaravans.id("bandit"))));
+
+
     public static final RegistrySupplier<Item> CARAVAN_GUARD_SPAWN_EGG =
             ITEMS.register("caravan_guard_spawn_egg", () -> new SpawnEggItem(new Item.Properties()
                     .spawnEgg(CARAVAN_GUARD.get())
@@ -314,6 +351,16 @@ public final class ModRegistries {
                     .stacksTo(1)
                     .setId(itemKey("tipi_tent"))));
 
+   public static final RegistrySupplier<Item> BANDIT_YURT_TENT_ITEM = ITEMS.register("bandit_yurt_tent",
+            () -> new BanditTentBlockItem(YURT_TENT.get(), new Item.Properties()
+                    .stacksTo(1)
+                    .setId(itemKey("bandit_yurt_tent"))));
+
+    public static final RegistrySupplier<Item> BANDIT_TIPI_TENT_ITEM = ITEMS.register("bandit_tipi_tent",
+            () -> new BanditTentBlockItem(TIPI_TENT.get(), new Item.Properties()
+                    .stacksTo(1)
+                    .setId(itemKey("bandit_tipi_tent"))));
+
     public static final RegistrySupplier<Block> CAMP_FENCE_POST = BLOCKS.register("camp_fence_post",
             () -> new CampFencePostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5F)
@@ -362,11 +409,17 @@ public final class ModRegistries {
                         output.accept(NOMAD_CHESTPLATE.get());
                         output.accept(NOMAD_LEGGINGS.get());
                         output.accept(NOMAD_BOOTS.get());
+                        output.accept(BANDIT_HELMET.get());
+                        output.accept(BANDIT_CHESTPLATE.get());
+                        output.accept(BANDIT_LEGGINGS.get());
+                        output.accept(BANDIT_BOOTS.get());
                         output.accept(NOMAD_BOW.get());
                         output.accept(NOMAD_SWORD.get());
                         output.accept(NOMAD_SHIELD.get());
                         output.accept(YURT_TENT_ITEM.get());
                         output.accept(TIPI_TENT_ITEM.get());
+                        output.accept(BANDIT_YURT_TENT_ITEM.get());
+                        output.accept(BANDIT_TIPI_TENT_ITEM.get());
 
                     })
                     .build());

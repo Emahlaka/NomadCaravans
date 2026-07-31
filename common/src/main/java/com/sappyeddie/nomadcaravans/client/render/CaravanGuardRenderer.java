@@ -18,7 +18,10 @@ public class CaravanGuardRenderer
         extends HumanoidMobRenderer<CaravanGuardEntity, HumanoidRenderState, NomadGuardModel> {
 
     private static final Identifier TEXTURE =
-            Identifier.fromNamespaceAndPath("nomadcaravans", "textures/entity/villager/type/nomad.png");
+            Identifier.fromNamespaceAndPath("nomadcaravans", "textures/entity/nomad_guard.png");
+
+    private static final Identifier HEAD_TEXTURE =
+            Identifier.fromNamespaceAndPath("nomadcaravans", "textures/entity/nomad_head.png");
 
     public CaravanGuardRenderer(EntityRendererProvider.Context context) {
         super(context, new NomadGuardModel(context.bakeLayer(NomadModelLayers.NOMAD_GUARD)), 0.5F);
@@ -26,6 +29,9 @@ public class CaravanGuardRenderer
         ArmorModelSet<HumanoidModel<HumanoidRenderState>> armorModels =
                 ArmorModelSet.bake(ModelLayers.HUSK_ARMOR, context.getModelSet(), HumanoidModel::new);
         this.addLayer(new HumanoidArmorLayer<>(this, armorModels, context.getEquipmentRenderer()));
+        this.addLayer(new HeadTextureLayer<>(this,
+                new NomadGuardModel(context.bakeLayer(NomadModelLayers.NOMAD_GUARD_HEAD)),
+                HEAD_TEXTURE));
     }
 
     @Override

@@ -10,17 +10,38 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 
+import java.util.Set;
+
 public class NomadGuardModel extends HumanoidModel<HumanoidRenderState> {
 
     public NomadGuardModel(ModelPart root) {
         super(root);
     }
 
+
     public static LayerDefinition createBodyLayer() {
         return createBodyLayer(CubeDeformation.NONE);
     }
 
     public static LayerDefinition createBodyLayer(CubeDeformation deformation) {
+        MeshDefinition mesh = buildMesh(deformation);
+        mesh.getRoot().retainPartsAndChildren(
+                Set.of("body", "right_arm", "left_arm", "right_leg", "left_leg"));
+        return LayerDefinition.create(mesh, 64, 64);
+    }
+
+
+    public static LayerDefinition createHeadLayer() {
+        return createHeadLayer(CubeDeformation.NONE);
+    }
+
+    public static LayerDefinition createHeadLayer(CubeDeformation deformation) {
+        MeshDefinition mesh = buildMesh(deformation);
+        mesh.getRoot().retainPartsAndChildren(Set.of("head"));
+        return LayerDefinition.create(mesh, 64, 64);
+    }
+
+    private static MeshDefinition buildMesh(CubeDeformation deformation) {
         MeshDefinition mesh = HumanoidModel.createMesh(deformation, 0.0F);
         PartDefinition root = mesh.getRoot();
 
@@ -39,6 +60,6 @@ public class NomadGuardModel extends HumanoidModel<HumanoidRenderState> {
                         .addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F, deformation),
                 PartPose.offset(0.0F, -2.0F, 0.0F));
 
-        return LayerDefinition.create(mesh, 64, 64);
+        return mesh;
     }
 }

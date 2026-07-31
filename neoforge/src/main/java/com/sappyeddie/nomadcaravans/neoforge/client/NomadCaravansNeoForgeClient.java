@@ -12,8 +12,9 @@ import com.sappyeddie.nomadcaravans.client.render.UntameableYakRenderer;
 import com.sappyeddie.nomadcaravans.client.render.WanderingTraderYakRenderer;
 import com.sappyeddie.nomadcaravans.client.render.WildYakRenderer;
 import com.sappyeddie.nomadcaravans.client.render.YakRenderer;
-import com.sappyeddie.nomadcaravans.tent.client.TipiTentRenderer;
-import com.sappyeddie.nomadcaravans.tent.client.YurtTentRenderer;
+import com.sappyeddie.nomadcaravans.client.render.BanditRenderer;
+import com.sappyeddie.nomadcaravans.neoforge.tent.client.TipiTentRenderer;
+import com.sappyeddie.nomadcaravans.neoforge.tent.client.YurtTentRenderer;
 import net.minecraft.client.renderer.entity.VillagerRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -32,6 +33,8 @@ public final class NomadCaravansNeoForgeClient {
 
     private void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(NomadModelLayers.NOMAD_GUARD, NomadGuardModel::createBodyLayer);
+        event.registerLayerDefinition(NomadModelLayers.NOMAD_GUARD_HEAD, NomadGuardModel::createHeadLayer);
+
     }
 
     private void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -42,6 +45,7 @@ public final class NomadCaravansNeoForgeClient {
         event.registerEntityRenderer(ModRegistries.CARAVAN_LEADER.get(), VillagerRenderer::new);
         event.registerEntityRenderer(ModRegistries.CARAVAN_FOLLOWER.get(), VillagerRenderer::new);
         event.registerEntityRenderer(ModRegistries.CARAVAN_GUARD.get(), CaravanGuardRenderer::new);
+        event.registerEntityRenderer(ModRegistries.BANDIT.get(), BanditRenderer::new);
         event.registerEntityRenderer(ModRegistries.UNTAMEABLE_YAK.get(), UntameableYakRenderer::new);
         event.registerEntityRenderer(ModRegistries.UNTAMEABLE_WILD_YAK.get(), UntameableWildYakRenderer::new);
         event.registerEntityRenderer(ModRegistries.UNTAMEABLE_WANDERING_TRADER_YAK.get(),

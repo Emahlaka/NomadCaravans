@@ -10,6 +10,7 @@ public class YurtTentModel extends GeoModel<YurtTentBlockEntity> {
 
     private static final Identifier MODEL = NomadCaravans.id("block/yurt");
     private static final Identifier TEXTURE = NomadCaravans.id("textures/block/yurt.png");
+    private static final Identifier BANDIT_TEXTURE = NomadCaravans.id("textures/block/bandit_yurt.png");
     private static final Identifier ANIMATION = NomadCaravans.id("block/yurt_tent");
 
     @Override
@@ -19,7 +20,8 @@ public class YurtTentModel extends GeoModel<YurtTentBlockEntity> {
 
     @Override
     public Identifier getTextureResource(GeoRenderState renderState) {
-        return TEXTURE;
+        boolean bandit = Boolean.TRUE.equals(renderState.getGeckolibData(TentBlockRenderer.BANDIT));
+        return bandit ? BANDIT_TEXTURE : TEXTURE;
     }
 
     @Override

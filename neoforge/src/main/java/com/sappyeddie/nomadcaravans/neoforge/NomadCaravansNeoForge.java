@@ -2,6 +2,7 @@ package com.sappyeddie.nomadcaravans.neoforge;
 
 import com.sappyeddie.nomadcaravans.ModRegistries;
 import com.sappyeddie.nomadcaravans.NomadCaravans;
+import com.sappyeddie.nomadcaravans.entity.BanditEntity;
 import com.sappyeddie.nomadcaravans.entity.CaravanGuardEntity;
 import com.sappyeddie.nomadcaravans.entity.YakEntity;
 import com.sappyeddie.nomadcaravans.platform.NomadPlatform;
@@ -29,6 +30,7 @@ public final class NomadCaravansNeoForge {
         event.put(ModRegistries.CARAVAN_LEADER.get(), Villager.createAttributes().build());
         event.put(ModRegistries.CARAVAN_FOLLOWER.get(), Villager.createAttributes().build());
         event.put(ModRegistries.CARAVAN_GUARD.get(), CaravanGuardEntity.createAttributes().build());
+        event.put(ModRegistries.BANDIT.get(), BanditEntity.createAttributes().build());
         event.put(ModRegistries.UNTAMEABLE_YAK.get(),
                 com.sappyeddie.nomadcaravans.entity.UntameableYakEntity.createAttributes().build());
         event.put(ModRegistries.UNTAMEABLE_WILD_YAK.get(),

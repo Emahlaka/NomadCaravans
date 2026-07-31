@@ -15,6 +15,7 @@ public final class NomadCaravansFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         ModelLayerRegistry.registerModelLayer(NomadModelLayers.NOMAD_GUARD, NomadGuardModel::createBodyLayer);
+        ModelLayerRegistry.registerModelLayer(NomadModelLayers.NOMAD_GUARD_HEAD, NomadGuardModel::createHeadLayer);
 
         dev.architectury.event.events.client.ClientTickEvent.CLIENT_POST.register(
                 com.sappyeddie.nomadcaravans.client.NomadDynamicLights::tick);
@@ -27,6 +28,7 @@ public final class NomadCaravansFabricClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModRegistries.CARAVAN_LEADER.get(), VillagerRenderer::new);
         EntityRendererRegistry.register(ModRegistries.CARAVAN_FOLLOWER.get(), VillagerRenderer::new);
         EntityRendererRegistry.register(ModRegistries.CARAVAN_GUARD.get(), CaravanGuardRenderer::new);
+        EntityRendererRegistry.register(ModRegistries.BANDIT.get(), BanditRenderer::new);
         EntityRendererRegistry.register(ModRegistries.UNTAMEABLE_YAK.get(), UntameableYakRenderer::new);
         EntityRendererRegistry.register(ModRegistries.UNTAMEABLE_WILD_YAK.get(), UntameableWildYakRenderer::new);
         EntityRendererRegistry.register(ModRegistries.UNTAMEABLE_WANDERING_TRADER_YAK.get(),

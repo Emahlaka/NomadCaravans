@@ -7,5 +7,8 @@ public final class NomadModelLayers {
     public static final ModelLayerLocation NOMAD_GUARD = new ModelLayerLocation(
             Identifier.fromNamespaceAndPath("nomadcaravans", "nomad_guard"), "main");
 
+    public static final ModelLayerLocation NOMAD_GUARD_HEAD = new ModelLayerLocation(
+            Identifier.fromNamespaceAndPath("nomadcaravans", "nomad_guard"), "head");
+
     private NomadModelLayers() {}
 }

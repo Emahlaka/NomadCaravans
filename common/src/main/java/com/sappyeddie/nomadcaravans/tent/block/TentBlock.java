@@ -152,7 +152,7 @@ public abstract class TentBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-                                                                 BlockEntityType<T> type) {
+                                                                  BlockEntityType<T> type) {
         if (level.isClientSide()) {
             return null;
         }
@@ -318,6 +318,10 @@ public abstract class TentBlock extends Block implements EntityBlock {
             }
             if (campLocked) {
                 tentBE.setCampLocked(true);
+            }
+            if (stack.has(DataComponents.CUSTOM_DATA)
+                    && stack.get(DataComponents.CUSTOM_DATA).copyTag().getBoolean("Bandit").orElse(false)) {
+                tentBE.setBandit(true);
             }
         }
 

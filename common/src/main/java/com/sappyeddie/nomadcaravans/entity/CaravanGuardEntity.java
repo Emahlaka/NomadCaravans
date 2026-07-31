@@ -167,6 +167,7 @@ public class CaravanGuardEntity extends PathfinderMob implements RangedAttackMob
         setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModRegistries.NOMAD_CHESTPLATE.get()));
         setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModRegistries.NOMAD_LEGGINGS.get()));
         setItemSlot(EquipmentSlot.FEET, new ItemStack(ModRegistries.NOMAD_BOOTS.get()));
+
         if (archer) {
             setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModRegistries.NOMAD_BOW.get()));
             setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);

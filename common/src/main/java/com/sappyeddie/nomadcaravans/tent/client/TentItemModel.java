@@ -9,6 +9,7 @@ import net.minecraft.resources.Identifier;
 public class TentItemModel extends GeoModel<TentBlockItem> {
 
     private static final Identifier TEXTURE = NomadCaravans.id("textures/item/rolleduptent.png");
+    private static final Identifier BANDIT_TEXTURE = NomadCaravans.id("textures/item/bandit_rolleduptent.png");
 
     private final Identifier model;
 
@@ -23,7 +24,8 @@ public class TentItemModel extends GeoModel<TentBlockItem> {
 
     @Override
     public Identifier getTextureResource(GeoRenderState renderState) {
-        return TEXTURE;
+        boolean bandit = Boolean.TRUE.equals(renderState.getGeckolibData(TentBlockRenderer.BANDIT));
+        return bandit ? BANDIT_TEXTURE : TEXTURE;
     }
 
     @Override
